@@ -575,7 +575,7 @@ def main():
             
             household_size = st.slider("Household Size", min_value=2, max_value=8, value=3, step=1)
             income_level = st.number_input("Income Level (INR/month)", min_value=1000, max_value=20000, value=5000, step=500)
-            loan_amount = st.number_input("Loan Amount (INR)", min_value=10000, max_value=200000, value=50000, step=5000)
+            loan_amount = st.number_input("Loan Amount (INR)", min_value=1000, max_value=200000, value=50000, step=1000)
             loan_tenure = st.slider("Loan Tenure (Months)", min_value=3, max_value=36, value=12, step=3)
             interest_rate = st.number_input("Interest Rate (%)", min_value=23.0, max_value=27.0, value=25.0, step=0.5)
             
