@@ -640,7 +640,7 @@ def main():
                             f"monthly income of INR {df_raw.iloc[0]['Income Level (INR/m)']}, applied for a loan of INR {df_raw.iloc[0]['Loan Amount (INR)']} "
                             f"for a tenure of {df_raw.iloc[0]['Loan Tenure (Months)']} months at an interest rate of {df_raw.iloc[0]['Interest Rate (%)']}%. "
                             f"Based on the model's prediction, the applicant is likely to **{prediction_labels[0]}** "
-                            # f"with a probability of **{prediction_probs[0]:.2%}**."
+                            f"with a probability of **{prediction_probs[0]:.2%}**."
                         )
                         
                         if prediction_labels[0] == "Default":
