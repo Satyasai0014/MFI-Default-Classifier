@@ -251,7 +251,7 @@ def main():
 
     with tab1:
 
-        sub_tabs = st.tabs(["Home", "About MFI"])
+        sub_tabs = st.tabs(["Home", "About MFI","User Manual","Research Framework","Our Team","Research Publications"])
        
         
         with sub_tabs[0]:
@@ -323,7 +323,89 @@ def main():
         # Tab 2: Create Payment Schedule
         # Tab 2: Create Payment Schedule
         # Tab 2: Create Payment Schedule
+        with sub_tabs[2]:
+            # st.write("User Manual come here..!")
+            st.title("User Manual")
 
+            st.write("This manual contains a step-by-step guide to use this tool.The tool has three main tabs")
+
+            # ABOUT in big letters
+            st.markdown("<h2 style='text-align: left; color: teal;'>ABOUT</h2>", unsafe_allow_html=True)
+            
+            st.markdown("""
+                               
+            
+            This section contains three sub-tabs:
+            
+            - **Home**: Provides detailed information on the objectives, innovation, users and features of this tool
+            - **About MFI**: Gives background on Microfinance Institutions (MFIs) and includes useful resources and quick links for further reading.
+            - **Research Framework**: Gives the overall framework used for this tool.
+            - **Our Team**: Introduces the team behind this tool.
+            - **Research Publications**: Provides all the information about the research publications.
+            ---
+            """)
+            
+            
+            # Default Classifier in big letters
+            st.markdown("<h2 style='text-align: left; color: teal;'>Default Classifier</h2>", unsafe_allow_html=True)
+            
+            st.markdown("""
+                               
+            
+            This tab contains the detailed description about the model which is running behind the servers for making prediction.This section contains five sub-tabs:
+            
+            - **About Default Classifier**: Contains information about the tab ***“Default Classifier”***. Overview of the model and its purpose.
+            - **Dataset Description**: Preview of the data and explanation of each feature.
+            - **Mehtodology**: Step-by-step approach used to build the classifier.
+            - **Data Visualization**: Interactive plots showing feature distributions and class counts.
+            - **Run Model**: Input interface for predictions using top 8 selected features. Applies pre-trained scaler, encoder, and model to return output with probability.
+            ---
+            """)
+            # Exposure Calculator in big letters
+            st.markdown("<h2 style='text-align: left; color: teal;'>Exposure Calculator</h2>", unsafe_allow_html=True)
+            
+            st.markdown("""
+                               
+            
+            This section contains four sub-tabs:
+            
+            - **About Exposure Calculator**: Provides an overview of the ***“Exposure Calculator”***, explaining its objective and relevance.
+            - **New User Creation**: Allows users to create a new customer profile, generate their payment schedule, and store the information in the database.
+            - **Expoure Calculation**:  Enables retrieval of a customer's payment schedule from the database. Loan Officers can update the Days Past Due (DPD), which will automatically compute the total exposure.
+            - **Portfolio View**: Displays a comprehensive view of all customers in the database, including their respective DPD status and a summary of customer distribution.
+
+            
+            ---
+            """)
+        with sub_tabs[3]:
+            st.write("Research Framework will come here..!")
+        with sub_tabs[4]:
+            # st.write("Team Details will come here..!")
+            with st.container():
+                st.markdown("""
+                    <div style="margin-bottom: 40px;">
+                        <h2 style="color: #0e76a8; margin-bottom: 5px;">Aparna V</h2>
+                        <p style="font-size: 16px; line-height: 1.6;">
+                            Mrs. Aparna V is an Assistant Professor in Department of Management and Commerce at Sri Satya Sai Institute of Higher Learning. From the past eight years, she is teaching papers in the area of financial management and Accounting related papers. She is currently perusing a Ph.D. in Credit Risk Management in Microfinance Institutions.
+                        </p>
+                    </div>
+                """, unsafe_allow_html=True)
+                st.markdown("""
+                    <div style="margin-bottom: 40px;">
+                        <h2 style="color: #0e76a8; margin-bottom: 5px;">Dr. C. Jayashree</h2>
+                        <p style="font-size: 16px; line-height: 1.6;">
+                            Dr. Jayashree specializes in the area of marketing and has a strong background in accounting and finance, with nearly a decade of teaching experience. She has also worked as an accountant and administrative secretary at a private company in Chennai. Dr. Jayashree holds a Ph.D. degree from the University of Madras and has numerous national and international publications to her credit. Her research interests focus on fintech solutions and their impact in the Indian context.
+                        </p>
+                    </div>
+                """, unsafe_allow_html=True)
+                st.markdown("""
+                    <div style="margin-bottom: 40px;">
+                        <h2 style="color: #0e76a8; margin-bottom: 5px;">Satya Sai Mudigonda, AIAI</h2>
+                        <p style="font-size: 16px; line-height: 1.6;">
+                            Satya Sai is a Professor of Practice and Coordinator at the Center of Excellence in Actuarial Data Science, Sri Sathya Sai Institute of Higher Learning (SSSIHL). He is an Associate of the Institute of Actuaries of India, with over 30 years of experience as a Senior Tech Actuarial Consultant, he has managed multi-million-dollar international assignments for major insurers. He has guided three PhD scholars and has numerous international journal publications in Actuarial Data Science. His research focuses on Fraud Detection, Crop Insurance, and Group Health Insurance.
+                        </p>
+                    </div>
+                """, unsafe_allow_html=True)
     with tab2:
         sub_tabs = st.tabs(["About the Classifier","Data Description","Methodology", "Data Visualization", "Run Model"])
         with sub_tabs[0]:
@@ -429,8 +511,11 @@ def main():
             df = pd.read_excel("Data_MFI.xlsx")
         
                 # Display the first few rows
-            st.write("### 📝 Data Preview")
+            st.write("### Data Preview")
             st.dataframe(df.head())
+            if st.checkbox("View Full Data"):
+                st.write("## Full Dataset")
+                st.dataframe(df)
             data_desc = {
             "Attribute": [
                 "Age", "Gender", "Marital Status", "Education Level", "Household Size", "Occupation (Income Source)",
@@ -459,12 +544,12 @@ def main():
 
             # Create a DataFrame
             df_desc = pd.DataFrame(data_desc)
-            st.header("About the Data")
+            st.write("### About the Data")
             st.write("This table provides an overview of the attributes and their descriptions in the dataset.")
             st.dataframe(df_desc, use_container_width =True)
         with sub_tabs[2]:
             st.header("Methodolody")
-            st.image("workflow.jpg")
+            st.image("methodology_updated.jpg")
 
             with st.expander(" What is Data Preprocessing ?"):
                 st.write("""
@@ -495,6 +580,19 @@ def main():
                         `SMOTE (Synthetic Minority Over-sampling Technique)` is a technique used in machine learning to handle imbalanced datasets by generating synthetic samples for the minority class. Instead of simply duplicating existing samples, SMOTE creates new synthetic data points to balance the dataset, making models perform better.                 
                     
                 """)
+            with st.expander("What is Feature Selection?"):
+                st.write("""
+                    `Feature Selection` is the process of identifying and selecting the most relevant input variables (features) from a dataset that contribute the most to the prediction or analysis task.  
+                    
+                    It helps in:
+                    - Reducing overfitting by eliminating noisy or irrelevant data
+                    - Improving model performance and accuracy
+                    - Reducing training time and computational cost
+                    - Enhancing model interpretability
+            
+                    Common techniques include filter methods (e.g., correlation), wrapper methods (e.g., recursive feature elimination), and embedded methods (e.g., Lasso regression).
+                """)
+
         
         with sub_tabs[3]:
             st.header("Data Visualization")
@@ -575,7 +673,7 @@ def main():
             
             household_size = st.slider("Household Size", min_value=2, max_value=8, value=3, step=1)
             income_level = st.number_input("Income Level (INR/month)", min_value=1000, max_value=20000, value=5000, step=500)
-            loan_amount = st.number_input("Loan Amount (INR)", min_value=1000, max_value=200000, value=50000, step=1000)
+            loan_amount = st.number_input("Loan Amount (INR)", min_value=10000, max_value=200000, value=50000, step=5000)
             loan_tenure = st.slider("Loan Tenure (Months)", min_value=3, max_value=36, value=12, step=3)
             interest_rate = st.number_input("Interest Rate (%)", min_value=23.0, max_value=27.0, value=25.0, step=0.5)
             
