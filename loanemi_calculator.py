@@ -543,7 +543,7 @@ def main():
         }
 
             # Create a DataFrame
-            df_desc = pd.DataFrame(data_desc)
+            df_desc = pd.DataFrame(data_desc)  
             st.write("### About the Data")
             st.write("This table provides an overview of the attributes and their descriptions in the dataset.")
             st.dataframe(df_desc, use_container_width =True)
