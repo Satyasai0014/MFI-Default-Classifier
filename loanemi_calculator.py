@@ -11,6 +11,8 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
 
+st.set_page_config(layout="wide")
+
 # Database setup
 def init_db():
     conn = sqlite3.connect("emi_schedule.db")
